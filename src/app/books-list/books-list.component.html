@@ -1,0 +1,37 @@
+<input [(ngModel)]='listFilter' type="text">
+<table class="table table-hover table-stripped" *ngIf="books && books.length">
+  <thead>
+    <tr>
+      <td>Capa</td>
+      <td>Data</td>
+      <td>Nome</td>
+      <td>Descrição</td>
+      <td>Estrelas</td>
+      <td>Arquivo</td>
+    </tr>
+  </thead>
+  <tbody *ngFor="let book of filteredBooks">
+    <tr (click)="toggleDetails(book)" style="cursor: pointer;">
+      <td>
+        <img
+          [src]="book.image"
+          [title]="book.name"
+          [style.width.px]="imageWidth"
+          [style.Margin.px]="imageMargin"
+        />
+      </td>
+      <td>{{ book.releaseDate | date:'dd/MM/yyyy'  }}</td>
+      <td>{{ book.name }}</td>
+      <td>{{ book.description | convertToSpaces: '-' }}</td>
+      <td>{{ book.star }}</td>
+      <td>{{ book.arquivo }}</td>
+    </tr>
+    <tr *ngIf="book.details">
+      <td colspan="99">
+        Edição {{ book.edition }}
+        Formato {{ book.format }}
+        ISBN {{ book.isbn }}
+      </td>
+    </tr>
+  </tbody>
+</table>
