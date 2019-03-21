@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { IBook, Book } from '../Interfaces/Books';
+import { IBook } from '../Interfaces/IBooks';
+import { Book } from "../Class/Book";
 
 @Component({
   selector: "app-books-list",
@@ -55,8 +56,8 @@ export class BooksListComponent implements OnInit {
     }
   ];
 
-  toggleDetails(book : Book): void{
-    book.changeDetails();
+  toggleDetails(book : IBook): void{
+    book.details = !book.details;
   }
   performFilter(filterBy: string){
     filterBy = filterBy.toLocaleLowerCase();
