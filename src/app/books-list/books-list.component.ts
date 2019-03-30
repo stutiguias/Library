@@ -20,7 +20,8 @@ export class BooksListComponent implements OnInit {
   imageMargin: number = 2;
   filteredBooks: IBook[];
   _listFilter: string;
-  
+  st: string;
+
   get listFilter(): string {
      return this._listFilter;
   }
@@ -59,8 +60,13 @@ export class BooksListComponent implements OnInit {
   toggleDetails(book : IBook): void{
     book.details = !book.details;
   }
+  
   performFilter(filterBy: string){
     filterBy = filterBy.toLocaleLowerCase();
     return this.books.filter((book : IBook) => book.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  onNotify(message : string) : void {
+    this.st = message;
   }
 }

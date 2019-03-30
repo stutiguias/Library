@@ -1,4 +1,6 @@
-<input [(ngModel)]='listFilter' type="text">
+<label for="search">Pesquisar : </label>
+<input id="search" [(ngModel)]='listFilter' type="text">
+<div>{{ st }}</div>
 <table class="table table-hover table-stripped" *ngIf="books && books.length">
   <thead>
     <tr>
@@ -23,7 +25,7 @@
       <td>{{ book.releaseDate | date:'dd/MM/yyyy'  }}</td>
       <td>{{ book.name }}</td>
       <td>{{ book.description | convertToSpaces: '-' }}</td>
-      <td>{{ book.star }}</td>
+      <td><app-star [rating]="book.star" (notify)="onNotify($event)"></app-star></td>
       <td>{{ book.arquivo }}</td>
     </tr>
     <tr *ngIf="book.details">
